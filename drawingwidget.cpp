@@ -8,7 +8,7 @@
 #include <QPixmap>
 #include <QWindow>
 
-DrawingWidget::DrawingWidget(QWidget *parent) : QWidget(parent) {
+/*DrawingWidget::DrawingWidget(QWidget *parent) : QWidget(parent) {
     //setMinimumSize(800, 600);
     showFullScreen();
     setWindowOpacity(0.1);
@@ -26,6 +26,28 @@ DrawingWidget::DrawingWidget(QWidget *parent) : QWidget(parent) {
 //    QVBoxLayout *layout = new QVBoxLayout(this);
 //    layout->addWidget(captureButton);
 //    layout->addWidget(this);
+
+}*/
+
+DrawingWidget::DrawingWidget(QWidget *parent) : QWidget(parent) {
+    setAttribute(Qt::WA_TranslucentBackground);  // Enable transparent background
+    setAttribute(Qt::WA_NoSystemBackground, false);  // Disable system background
+    setWindowFlags(Qt::FramelessWindowHint);  // Remove window frame
+
+    drawing = false;
+
+    // Capture the desktop's screenshot
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QPixmap desktopScreenshot = screen->grabWindow(0);
+
+    // Set the desktop screenshot as the background
+    setAutoFillBackground(true);
+    QPalette palette;
+    palette.setBrush(backgroundRole(), QBrush(desktopScreenshot));
+    setPalette(palette);
+
+    showFullScreen();
+    //setWindowOpacity(0.1);
 
 }
 
