@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "drawingwidget.h"
 #include <QMouseEvent>
+#include "drawingwidget.h"
+#include <shapewidget.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void updateClock();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -29,11 +31,14 @@ private slots:
 
     void on_pushButtonQuit_clicked();
 
+    void on_pushButtonShape_clicked();
+
 private:
     Ui::MainWindow *ui;
-    DrawingWidget* widget;
+    DrawingWidget* widget;//Todo rename
+    ShapeWidget* shapeWidget;
 
     bool isDragging = false;
-       QPoint dragStart;
+    QPoint dragStart;
 };
 #endif // MAINWINDOW_H

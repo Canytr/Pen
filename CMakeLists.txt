@@ -19,6 +19,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         drawingwidget.cpp
         drawingwidget.h
+        shapewidget.h
+        shapewidget.cpp
         mainwindow.h
         mainwindow.ui
 )
